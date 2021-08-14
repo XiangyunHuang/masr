@@ -1,5 +1,6 @@
 --- 
 title: "现代应用统计与 R 语言"
+subtitle: "Modern Applied Statistics with R"
 author: "黄湘云"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -440,14 +441,6 @@ knitr::include_graphics(path = "images/cc-by-nc-nd.png")
 
 ## 运行信息 {#sec-session-welcome .unnumbered}
 
-书籍在 `r R.version.string` 下编译，Pandoc 版本 2.14.1，最新一次编译发生在 `r Sys.time()`。
+书籍在 `r R.version.string` 下编译，Pandoc 版本 2.14.1，最新一次编译发生在 `r format(Sys.time(), tz = "Asia/Shanghai")`。
 
-```{r}
-xfun::session_info(packages = c(
-  "knitr", "rmarkdown", "bookdown", "equatiomatic",
-  "data.table", "DT", "kableExtra", "reactable",
-  "patchwork", "plotly", "shiny",
-  "ggplot2", "dplyr", "tidyverse"
-), dependencies = FALSE)
-```
 

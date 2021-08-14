@@ -18,7 +18,8 @@ rmd_files:
 - "preface.Rmd"                # 前言
 
 
-#
+# 数据处理
+- "data-wrangling.Rmd"
 - "data-structure.Rmd"         # R 语言数据结构
 - "data-transportation.Rmd"    # 数据导入导出
 - "string-operations.Rmd"      # 字符串操作
@@ -35,6 +36,7 @@ rmd_files:
 
 
 # 统计基础
+- "statistical-foundations.Rmd"
 - "sampling-distributions.Rmd"   # 抽样分布
 - "parameter-estimators.Rmd"     # 参数估计
 - "hypothesis-test.Rmd"          # 假设检验
@@ -42,6 +44,7 @@ rmd_files:
 - "experimental-design.Rmd"      # 试验设计
 
 # 统计模型
+- "statistical-models.Rmd"
 - "linear-models.Rmd"                  # 线性模型
 - "generalized-linear-models.Rmd"      # 广义线性模型
 #- "generalized-additive-models.Rmd"   # 广义可加模型
@@ -53,7 +56,8 @@ rmd_files:
 #- "nonlinear-mixed-models.Rmd"                  # 非线性混合效应模型
 - "bayesian-models.Rmd"         # 贝叶斯模型
 
-# 统计应用
+# 数据建模
+- "data-modeling.Rmd"
 - "text-analysis.Rmd"           # 文本分析
 - "survival-analysis.Rmd"       # 生存分析
 - "time-series-analysis.Rmd"    # 时序分析
@@ -92,7 +96,7 @@ rmd_files:
 - "matrix-operations.Rmd"           # 矩阵运算
 - "symbolic-computation.Rmd"
 
-- "mixed-programming.Rmd"           # R 和其它语言的混合编程
+- "mixed-programming.Rmd"           # 混合编程
 - "object-oriented-programming.Rmd" # 面向对象编程
 - "file-operations.Rmd"             # 文件操作
 - "other-softwares.Rmd"             # 其它软件工具

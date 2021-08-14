@@ -663,7 +663,7 @@ knitr::include_graphics(path = "screenshots/rasterly-rides.png")
 ```
 
 
-## 三维图 {#sec-plotly-3d}
+## 三维图 (plotly) {#sec-plotly-3d}
 
 
 ```{r plotly-3d,fig.cap="三维图形", eval=knitr::is_html_output()}
@@ -1703,7 +1703,27 @@ mtcars |>
           "))
 ```
 
+## 三维图 (rgl) {#sec-rgl-3d}
 
+```{r rgl-3d, fig.cap="三维世界地图", fig.width=4,fig.height=4, eval=knitr::is_html_output()}
+library(rgl)
+lat <- matrix(seq(90, -90, len = 50) * pi / 180, 50, 50, byrow = TRUE)
+long <- matrix(seq(-180, 180, len = 50) * pi / 180, 50, 50)
+
+r <- 6378.1 # radius of Earth in km
+x <- r * cos(lat) * cos(long)
+y <- r * cos(lat) * sin(long)
+z <- r * sin(lat)
+# 调整视角
+rgl.viewpoint( theta = 0, phi = 15, fov = 60, zoom = 0.5, interactive = TRUE)
+
+persp3d(x, y, z,
+  col = "white", xlab = "", ylab = "", zlab = "",
+  texture = system.file("textures/world.png", package = "rgl"),
+  specular = "black", axes = FALSE, box = FALSE,
+  normal_x = x, normal_y = y, normal_z = z
+)
+```
 
 ## 网络图 {#sec-network-analysis}
 

@@ -9,7 +9,7 @@ install.packages("INLA", repos = c("https://inla.r-inla-download.org/R/stable", 
 
 ```{r}
 library(geoR)
-library(INLA)
+# library(INLA)
 # library(leaflet)
 library(highcharter)
 ```

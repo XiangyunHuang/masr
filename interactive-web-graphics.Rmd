@@ -1481,14 +1481,6 @@ orca(p, "plot.svg")
 
 ## 地图 II {#sec-echarts4r-map}
 
-```{r,include=FALSE}
-library(echarts4r)
-library(leaflet)
-library(leafletCN)
-library(maptools)
-library(leaflet.extras)
-```
-
 相比于 **plotly**，**echarts4r** 更加轻量，这得益于 JavaScript 库 [Apache ECharts](https://github.com/apache/echarts)。
 前者 MIT 协议，后者采用  Apache-2.0 协议，都可以商用。Apache ECharts 是 Apache 旗下顶级开源项目，由百度前端技术团队贡献，中文文档也比较全，学习起来门槛会低一些。
 

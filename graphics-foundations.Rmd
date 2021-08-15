@@ -1652,28 +1652,40 @@ box(col = "gray")
 
 ### 函数图 {#function}
 
-```{r,fig.asp=1,out.width="65%",fig.width=6.5}
-##  First zero on the critical line s = 0.5 + i t
-x <- seq(0, 20, len = 1001)
-z <- 0.5 + x * 1i
-fr <- Re(pracma::zeta(z))
-fi <- Im(pracma::zeta(z))
-fa <- abs(pracma::zeta(z))
-plot(x, fa,
-  type = "n", xlim = c(0, 20), ylim = c(-1.5, 2.5),
-  xlab = "Imaginary part (on critical line)", 
-  ylab = "Function value",
-  main = "Riemann's Zeta Function along the critical line"
+```{r bessel-function, dev='tikz', fig.cap="贝塞尔函数", fig.show='hold', out.width="65%", fig.width=4, fig.height=4, cache=TRUE, fig.process=to_png}
+x0 <- 2^(-20:10)
+nus <- c(0:5, 10, 20)
+x <- seq(0, 4, length.out = 501)
+
+plot(x0, x0^-8,
+  frame.plot = TRUE, # 添加绘图框
+  log = "xy", # x 和 y 轴都取对数尺度
+  axes = FALSE, # 去掉坐标轴
+  xlab = "$u$", ylab = "$\\mathcal{K}_{\\kappa}(u)$", # 设置坐标轴标签
+  type = "n", # 清除绘图区域的内容
+  ann = TRUE, # 添加标题 x和y轴标签
+  panel.first = grid() # 添加背景参考线
 )
-grid()
-lines(x, fr, col = "blue")
-lines(x, fi, col = "darkgreen")
-lines(x, fa, col = "red", lwd = 2)
-points(14.1347, 0, col = "darkred")
-legend(0, 2.4, c("real part", "imaginary part", "absolute value"),
-  lty = 1, lwd = c(1, 1, 2), col = c("blue", "darkgreen", "red")
+
+axis(1,
+  at = 10^seq(from = -8, to = 2, by = 2),
+  labels = paste0("$\\mathsf{10^{", seq(from = -8, to = 2, by = 2), "}}$")
+)
+axis(2,
+  at = 10^seq(from = -8, to = 56, by = 16),
+  labels = paste0("$\\mathsf{10^{", seq(from = -8, to = 56, by = 16), "}}$"), las = 1
+)
+
+for (i in seq(length(nus))) {
+  lines(x0, besselK(x0, nu = nus[i]), col = hcl.colors(9)[i], lwd = 2)
+}
+legend("topright",
+  legend = paste0("$\\kappa=", rev(nus), "$"),
+  col = hcl.colors(9, rev = T), lwd = 2, cex = 1
 )
 ```
+
+
 
 还有 eta 函数和 gammaz 函数
 

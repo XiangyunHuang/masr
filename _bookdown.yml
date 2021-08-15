@@ -26,14 +26,25 @@ rmd_files:
 - "regular-expressions.Rmd"    # 正则表达式
 - "data-manipulation.Rmd"      # 数据操作
 
-#
+# 统计图形
+- "statistical-graphics.Rmd"
 - "graphics-foundations.Rmd"           # 图形基础
 - "data-visualization.Rmd"             # 数据可视化
 - "interactive-web-graphics.Rmd"       # 交互式网页图形
+
+# 文档
+- "dynamic-documents.Rmd"              # 动态文档
+- "document-elements.Rmd"              # 文档元素
+- "portable-documents.Rmd"             # 便携式文档
+- "web-documents.Rmd"                  # 网页文档
+- "office-documents.Rmd"               # 办公文档
+- "reproducible-workflows.Rmd"         # 可重复性工作流
+- "advanced-documents.Rmd"             # 大型应用
+
+# 数据产品
+- "data-product.Rmd"
 - "interactive-data-tables.Rmd"        # 交互式表格
 - "interactive-shiny-app.Rmd"          # 交互式仪表盘
-- "dynamic-documents.Rmd"              # 动态文档
-
 
 # 统计基础
 - "statistical-foundations.Rmd"
@@ -64,7 +75,7 @@ rmd_files:
 - "spatial-analysis.Rmd"        # 空间分析
 - "spatial-modeling.Rmd"        # 空间建模
 
-# 统计实战
+# 统计应用
 - "case-study.Rmd"              # 案例学习
 - "data-explorer.Rmd"           # 数据探索
 
@@ -85,12 +96,12 @@ rmd_files:
 
 # 运筹优化
 
-- "numerical-optimization.Rmd" # 数值优化
+- "numerical-optimization.Rmd"               # 数值优化
 #- "expectation-maximization.Rmd"
 #- "markov-chain-monte-carlo.Rmd"
 
 #- "deep-learning.Rmd"
-#- "natural-language-processing.Rmd" # 文本挖掘 分词 主题模型 LDA
+#- "natural-language-processing.Rmd"         # 文本挖掘 分词 主题模型 LDA
 
 - "appendix.Rmd"                    # 附录和命令行操作
 - "matrix-operations.Rmd"           # 矩阵运算

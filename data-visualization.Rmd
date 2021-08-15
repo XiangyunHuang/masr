@@ -785,14 +785,19 @@ barplot(1:8, col = gray_colors, border = NA)
 gray 与 grey 是一样的，类似 color 和 colour 的关系，可能是美式和英式英语的差别，且看
 
 ```{r,echo=TRUE}
-all.equal(col2rgb(paste0("gray", seq(100))), col2rgb(paste0("grey", seq(100))))
+all.equal(
+  col2rgb(paste0("gray", seq(100))),
+  col2rgb(paste0("grey", seq(100)))
+)
 ```
 
 `gray100` 代表白色，`gray0` 代表黑色，提取灰色调色板，去掉首尾部分是必要的
 
 ```{r gray-colors, fig.cap="提取 10 种灰色做调色板"}
-barplot(1:8, col = gray.colors(8, start = .3, end = .9), 
-        main = "gray.colors function", border = NA)
+barplot(1:8,
+  col = gray.colors(8, start = .3, end = .9),
+  main = "gray.colors function", border = NA
+)
 ```
 
 首先选择一组合适的颜色，比如从桃色到梨色，选择6种颜色，以此为基础，可以借助 `grDevices::colorRampPalette()` 函数扩充至想要的数目，用 `graphics::rect()` 函数预览这组颜色配制的调色板
@@ -1042,7 +1047,7 @@ swatch(palette1)[[1]]
 
 不同的颜色模式，从 RGB 到 HCL 的基本操作 <https://stat545.com/block018_colors.html>
 
-```{r,fig.cap="HCL调色",R.options=list(tidyverse.quiet = TRUE)}
+```{r, fig.cap="HCL调色", R.options=list(tidyverse.quiet = TRUE)}
 # https://github.com/hadley/ggplot2-book
 hcl <- expand.grid(x = seq(-1, 1, length = 100), y = seq(-1, 1, length = 100)) |>
   subset(subset = x^2 + y^2 < 1) |>
@@ -1093,7 +1098,7 @@ R 包 grDevices 提供 hcl 调色板[^hcl-palettes] 调制两个色板
 
 [^hcl-palettes]: https://developer.r-project.org/Blog/public/2019/04/01/hcl-based-color-palettes-in-grdevices/index.html
 
-```{r color-pal, fig.cap = "桃色至梨色的渐变"}
+```{r color-pal, fig.cap = "桃色至梨色的渐变", fig.width=4, fig.height=4}
 # Colors from https://github.com/johannesbjork/LaCroixColoR
 color_pal <- c("#FF3200", "#E9A17C", "#E9E4A6", "#1BB6AF", "#0076BB", "#172869")
 n <- 16
@@ -1101,7 +1106,7 @@ more_colors <- (grDevices::colorRampPalette(color_pal))(n)
 scales::show_col(colours = more_colors)
 ```
 
-```{r fish-hsv-pal, fig.cap="Hue-Saturation-Value (HSV) color model"}
+```{r fish-hsv-pal, fig.cap="Hue-Saturation-Value (HSV) 颜色模型", fig.width=4, fig.height=4}
 # colors in colortools from http://www.gastonsanchez.com/
 fish_pal <- c(
   "#69D2E7", "#6993E7", "#7E69E7", "#BD69E7",

@@ -45,6 +45,7 @@ keywords:
   - R 语言
 subject: "现代应用统计与 R 语言"
 description: "线性模型理论及其应用，注意模型的适用范围、参数估计方法、模型检验和诊断，理论和应用并重，同时附以真实的案例分析。将线性模型、广义线性模型、广义可加模型、线性混合效应模型、广义线性混合效应模型和广义可加混合效应模型融合到同一框架下。应用层面，要考虑数据集的平衡问题、缺失问题和异常问题。应用场景包括环境污染、流行病学和风险控制等领域。"
+cover-image: images/cover.png
 ---
 
 
@@ -90,45 +91,41 @@ vline <- function(x = 0, color = "red") {
 plotly::plot_ly(
   x = x, y = y1,
   type = "scatter", mode = "lines",
-  fill = "tozeroy", fillcolor = "rgba(92, 184, 92, 0.2)",
+  fill = "tozeroy", fillcolor = "rgba(102, 102, 102, 0.2)",
   text = ~ paste0(
     "x：", x, "<br>",
     "y：", round(y1, 3), "<br>"
   ),
   hoverinfo = "text",
-  name = "N(3, 1)",
-  # name = plotly::TeX("\\mathcal{N}(3,1^2)"),
-  line = list(shape = "spline", color = "#5CB85C")
+  name = plotly::TeX("\\mathcal{N}(3,1^2)"),
+  line = list(shape = "spline", color = "#666666")
 ) %>%
   plotly::add_trace(
     x = x, y = y2,
     type = "scatter", mode = "lines",
-    fill = "tozeroy", fillcolor = "rgba(91, 192, 222, 0.2)",
+    fill = "tozeroy", fillcolor = "rgba(153, 153, 153, 0.2)",
     text = ~ paste0(
       "x：", x, "<br>",
       "y：", round(y2, 3), "<br>"
     ),
     hoverinfo = "text",
-    name = "N(2, 2.25)",
-    # name = plotly::TeX("\\mathcal{N}(2, 1.5^2)"),
-    line = list(shape = "spline", color = "#5BC0DE")
+    name = plotly::TeX("\\mathcal{N}(2, 1.5^2)"),
+    line = list(shape = "spline", color = "#999999")
   ) %>%
   plotly::layout(
     xaxis = list(
       showgrid = F,
-      title = "x"
-      # title = plotly::TeX("x")
+      title = plotly::TeX("x")
     ),
     yaxis = list(
       showgrid = F,
-      title = "f(x)"
-      # title = plotly::TeX("f(x)")
+      title = plotly::TeX("f(x)")
     ),
     legend = list(x = 0.8, y = 1, orientation = "v")
   ) %>%
   plotly::config(
     staticPlot = TRUE,
-    # mathjax = "cdn",
+    mathjax = "cdn",
     displayModeBar = FALSE
   )
 ```
@@ -150,7 +147,7 @@ plotly::plot_ly(
 
 Bradley Efron 在他的课程中谈及现代统计的研究层次，第一层次是基于正态分布假设的，这种类型已经研究的很清楚了，往往可以得到精确的结果，第二层次是将正态分布推广到指数族，这种类型的也研究的比较多了，常见的情况都研究的比较清楚，罕见的情况也是大量存在的，特别是在实际应用当中，总的来说只能得到部分精确的结果，第三层次对分布没有任何限定，只要满足成为一个统计分布的条件，这种情况下就只能求助于一般的数学工具和渐进理论。
 
-```{r stats-level, opts.label='fig.small', fig.cap="(ref:stats-level)", fig.scap="(ref:stats-level-s)", echo=FALSE}
+```{r stats-level, fig.cap="(ref:stats-level)", fig.scap="(ref:stats-level-s)", fig.width=4, fig.height=4, echo=FALSE}
 par(mar = rep(0.5, 4))
 plot(c(0, 10), c(0, 10), ann = F, axes = F, type = "n")
 symbols(c(5, 5, 5), c(2.8, 4.0, 4.8),
@@ -342,27 +339,27 @@ text(2, 0.35, "$\\frac{1}{\\sqrt{2\\pi}}$", cex = 2)
 ```{r faithful-dens, fig.cap="散点图：faithful 数据集", fig.width=5, fig.height=5, echo=FALSE}
 plot(faithful,
   pch = 20, panel.first = grid(), cex = 1,
-  col = densCols(faithful, colramp = terrain.colors)
+  col = densCols(faithful, colramp = gray.colors)
 )
 ```
 
 [统计检验，决策风险，显著性水平]{.todo}
 
-```{r ab-test,fig.asp="A/B 测试：功效", fig.width=5, fig.height=4, echo=FALSE}
+```{r ab-test, fig.asp="A/B 测试：功效", fig.width=5, fig.height=4, echo=FALSE}
 ggplot(data.frame(x = c(-4, 10)), aes(x)) +
   stat_function(
     fun = dnorm, geom = "area", 
     args = list(mean = 2, sd = 1),
-    fill = "gray70", alpha = .8
+    fill = "gray80", alpha = .8
   ) +
   stat_function(
     fun = dnorm, geom = "area",
     args = list(mean = 4, sd = 2),
-    fill = "gray50", alpha = .8
+    fill = "gray40", alpha = .8
   ) +
-  geom_vline(xintercept = 4, col = "gray40", lty = 2, lwd = 1.2) +
-  geom_vline(xintercept = 2, col = "gray40", lty = 2, lwd = 1.2) +
-  theme_minimal(base_size = 16)
+  geom_vline(xintercept = 4, col = "gray40", lty = 2, lwd = 1) +
+  geom_vline(xintercept = 2, col = "gray40", lty = 2, lwd = 1) +
+  theme_void()
 ```
 
 Charles J. Geyer 的文章 Fuzzy and Randomized Confidence Intervals and P-Values [@Geyer2005] 文章中的图 1 名义覆盖概率的计算见 [@Blyth1960]

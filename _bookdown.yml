@@ -96,7 +96,7 @@ rmd_files:
 #- "decision-trees.Rmd"
 #- "random-forests.Rmd"
 - "gradient-boosting-machine.Rmd"
-- "neural-networks.Rmd"
+# - "neural-networks.Rmd"
 
 # 运筹优化
 

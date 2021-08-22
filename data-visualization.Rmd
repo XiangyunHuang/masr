@@ -362,7 +362,7 @@ sysfonts::font_add_google(name = "Noto Sans SC", family = "Noto Sans SC")
 ```
 
 ::: {.rmdwarn data-latex="{警告}"}
-在本书中，不要全局加载 showtext 包或调用 `showtext::showtext_auto()`，会和 extrafont 冲突，使得绘图时默认就只能使用 showtext 提供的字体。
+在本书中，不要全局加载 showtext 包或调用 `showtext::showtext_auto()`，会和 extrafont 冲突，使得绘图时默认就只能使用 showtext 提供的字体。extrafont 包提供的函数 `font_import()` 仅支持系统安装的 TrueType/Type1 字体
 :::
 
 ```{r font-in-ggplot, fig.width=6, fig.height=6, fig.showtext=TRUE, fig.cap="在 ggplot2 绘图系统中设置中英文字体", out.width="100%"}

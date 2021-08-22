@@ -42,10 +42,3 @@ quakes |>
 
 
 
-```{r}
-library(highcharter)
-highchart() |> 
-  hc_add_series(data = purrr::map(0:4, function(x) list(x, x)), type = "scatter", color = "orange")
-
-```
-

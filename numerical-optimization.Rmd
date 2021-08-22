@@ -1649,6 +1649,7 @@ HorizontalGrid(grid.lines = 2, grid.col = "blue", grid.lty = 1)
 
 简单线性回归
 
+[nlsr](https://cran.r-project.org/package=nlsr)
 
 是否能给大家提供一些思路？
 

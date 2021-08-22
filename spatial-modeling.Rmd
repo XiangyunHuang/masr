@@ -1,4 +1,4 @@
-# 空间建模 {#chap-spatial-modeling}
+# 空间数据建模 {#chap-spatial-modeling}
 
 ```{r, eval=!require('INLA'), include=FALSE}
 if (!requireNamespace("BiocManager", quietly = TRUE))
@@ -10,7 +10,7 @@ install.packages("INLA", repos = c("https://inla.r-inla-download.org/R/stable", 
 ```{r}
 library(geoR)
 # library(INLA)
-# library(leaflet)
+library(leaflet)
 library(highcharter)
 ```
 

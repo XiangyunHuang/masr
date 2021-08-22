@@ -72,8 +72,12 @@ rmd_files:
 - "text-analysis.Rmd"           # 文本分析
 - "survival-analysis.Rmd"       # 生存分析
 - "time-series-analysis.Rmd"    # 时序分析
+
+# 时空统计
+- "spatio-temporal-data.Rmd"
 - "spatial-analysis.Rmd"        # 空间分析
 - "spatial-modeling.Rmd"        # 空间建模
+- "spatial-viz.Rmd"
 
 # 统计应用
 - "case-study.Rmd"              # 案例学习

@@ -1463,27 +1463,6 @@ ggplotly(gg, dynamicTicks = "y") %>%
 
 ## 地图 II {#sec-echarts4r-map}
 
-相比于 **plotly**，**echarts4r** 更加轻量，这得益于 JavaScript 库 [Apache ECharts](https://github.com/apache/echarts)。
-前者 MIT 协议，后者采用  Apache-2.0 协议，都可以商用。Apache ECharts 是 Apache 旗下顶级开源项目，由百度前端技术团队贡献，中文文档也比较全，学习起来门槛会低一些。
-
-```{r fiji-quakes-echarts4r, fig.cap="斐济地震带", eval=knitr::is_html_output()}
-library(echarts4r)
-quakes |> 
-  e_charts(long) |> 
-  e_geo(
-    roam = TRUE,
-    boundingCoords = list(
-      c(185, - 10),
-      c(165, -40)
-    )
-  )  |>  
-  e_scatter(
-    lat, mag, 
-    coord_system = "geo"
-  ) |> 
-  e_visual_map(mag, scale = e_scale)
-```
-
 **leaflet** 包制作地图，斐济是太平洋上的一个岛国，处于板块交界处，经常发生地震，如下图所示，展示 1964 年来 1000 次震级大于 4 级的地震活动。
 
 ```{r fiji-quakes-html, fig.cap="斐济地震带", eval=FALSE}

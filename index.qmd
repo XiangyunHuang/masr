@@ -1,0 +1,7 @@
+# 前言 {.unnumbered}
+
+::: callout-warning
+Book in early development. Planned release in 202X. 
+:::
+
+二项分布的比例参数的区间估计 @Lawrence2001

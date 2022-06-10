@@ -1,0 +1,16 @@
+Package: masr
+Title: Modern Applied Statistics with R.
+Version: 0.01
+Authors@R: c(
+    person("Xiangyun", "Huang", , "xiangyunfaith@outlook.com", role = c("aut", "cre"))
+  )
+URL: https://github.com/XiangyunHuang/masr
+Depends: 
+    R (>= 4.2.0)
+Imports:
+    knitr,
+    quarto
+Suggests:
+    rsconnect
+Encoding: UTF-8
+License: CC NC ND 4.0

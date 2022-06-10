@@ -1,0 +1,9 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+masr.tex
+/.quarto/
+.DS_Store
+_book/
+old/

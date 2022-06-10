@@ -1,0 +1,53 @@
+project:
+  type: book
+
+lang: zh
+
+book:
+  title: "现代应用统计"
+  output-file: "masr"
+  author: "黄湘云"
+  date: "2022-04-05"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - references.qmd
+  repo-branch: main
+  search: true
+  downloads: [pdf]
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+    # code-fold: true
+    # code-tools: true
+    crossref:
+      chapters: true
+  docx:
+    toc: true
+    toc-depth: 3
+    crossref:
+      chapters: true
+  pdf:
+    documentclass: book
+    include-in-header: preamble.tex
+    classoption: [UTF8,twoside,openany,table]
+    keep-tex: true
+    lof: true
+    lot: true
+    geometry:
+      - tmargin=2.5cm
+      - bmargin=2.5cm
+      - lmargin=3.0cm
+      - rmargin=2.0cm
+    highlight-style: github
+    number-sections: true
+    top-level-division: chapter
+    colorlinks: true
+    link-citations: true
+    crossref:
+      chapters: true
+
+editor: source

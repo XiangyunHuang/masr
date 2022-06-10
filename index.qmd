@@ -5,3 +5,15 @@ Book in early development. Planned release in 202X.
 :::
 
 二项分布的比例参数的区间估计 @Lawrence2001
+
+
+
+## 环境信息 {#session}
+
+
+```{r}
+xfun::session_info(packages = c(
+  "knitr", "rmarkdown", "quarto", "rsconnect"
+), dependencies = FALSE)
+```
+

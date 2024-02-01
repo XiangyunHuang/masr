@@ -4,9 +4,9 @@ rsconnect::connectApiUser(
   account = "xiangyun", server = "bookdown.org",
   apiKey = Sys.getenv("CONNECT_API_KEY")
 )
-quarto::quarto_publish_site(
-  name = "masr", render = "none",
-  server = "bookdown.org",
-  account = "xiangyun",
-  title = "现代应用统计"
+rsconnect::deploySite(
+  siteName = "masr",
+  siteTitle = "现代应用统计",
+  server = "bookdown.org", account = "xiangyun",
+  render = "none", forceUpdate = TRUE
 )

@@ -36,6 +36,7 @@ Imports:
     magick,
     MCMCglmm,
     ncvreg,
+    patchwork,
     pdftools,
     pls,
     projpred,

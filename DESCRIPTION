@@ -25,6 +25,7 @@ Imports:
     GLMMadaptive,
     geodata (>= 0.4.13),
     ggplot2 (>= 3.5.0),
+    hexbin,
     hglm,
     INLA (>= 23.9.9),
     keras,

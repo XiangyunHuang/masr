@@ -14,6 +14,7 @@ Imports:
     blme,
     brms,
     cmdstanr (>= 0.7.1),
+    downlit,
     expm,
     fastmatrix,
     fGarch (>= 4031.90),
@@ -25,7 +26,9 @@ Imports:
     GLMMadaptive,
     geodata (>= 0.4.13),
     ggeffects,
+    ggfortify,
     ggplot2 (>= 3.5.0),
+    ggrepel,
     hexbin,
     hglm,
     INLA (>= 23.9.9),
@@ -43,6 +46,7 @@ Imports:
     plot3D,
     pls,
     projpred,
+    quantmod,
     randomForest,
     reticulate,
     rjags,
@@ -51,6 +55,7 @@ Imports:
     sf (>= 1.0.9),
     showtext,
     spaMM,
+    spData,
     spdep,
     splancs,
     spatstat,
@@ -59,7 +64,10 @@ Imports:
     tidycensus,
     tikzDevice,
     xgboost,
-    VGAM
+    xml2,
+    xts,
+    VGAM,
+    zoo
 Suggests:
     quarto,
     rsconnect

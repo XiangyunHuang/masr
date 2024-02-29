@@ -45,8 +45,8 @@ bibliography:
 format:
   html:
     theme: cosmo
-    code-fold: true
-    code-tools: true
+    code-link: true
+    code-line-numbers: true
     crossref:
       chapters: true
   docx:

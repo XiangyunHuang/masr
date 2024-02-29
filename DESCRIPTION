@@ -50,6 +50,7 @@ Imports:
     randomForest,
     reticulate,
     rjags,
+    rootSolve,
     rstan (>= 2.32.3),
     rpart.plot,
     sf (>= 1.0.9),

@@ -1,2 +1,2 @@
 html:
-	quarto render
+	quarto render --to html

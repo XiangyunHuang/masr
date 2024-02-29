@@ -6,11 +6,59 @@ Authors@R: c(
   )
 URL: https://github.com/XiangyunHuang/masr
 Depends: 
-    R (>= 4.2.0)
+    R (>= 4.3.0)
 Imports:
+    abess,
+    bayesplot,
+    BH,
+    blme,
+    brms,
+    cmdstanr (>= 0.7.1),
+    expm,
+    fastmatrix,
+    fGarch (>= 4031.90),
+    fmesher,
+    FRK (>= 2.2.0),
+    glmmTMB,
+    glmnet,
+    GLMMadaptive,
+    geodata (>= 0.4.13),
+    ggplot2 (>= 3.5.0),
+    hglm,
+    INLA (>= 23.9.9),
+    keras,
     knitr,
-    quarto
+    lars,
+    lavaan,
+    lme4,
+    loo (>= 2.6.0),
+    MCMCglmm,
+    ncvreg,
+    pls,
+    projpred,
+    randomForest,
+    reticulate,
+    rjags,
+    rstan (>= 2.32.3),
+    rpart.plot,
+    sf (>= 1.0.9),
+    spaMM,
+    spdep,
+    splancs,
+    spatstat,
+    stars (>= 0.6.0),
+    tensorflow,
+    tidycensus,
+    tikzDevice,
+    xgboost,
+    VGAM
 Suggests:
+    quarto,
     rsconnect
+LinkingTo: StanHeaders (>= 2.32.2), RcppParallel (>= 5.1.0)
+SystemRequirements: pgf (>= 3.00), JAGS 4.x.y
+Additional_repositories:
+    https://mc-stan.org/r-packages/,
+    https://inla.r-inla-download.org/R/stable
 Encoding: UTF-8
 License: CC NC ND 4.0

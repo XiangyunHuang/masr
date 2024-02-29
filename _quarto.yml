@@ -11,18 +11,42 @@ book:
   chapters:
     - index.qmd
     - intro.qmd
+    - part: "机器学习"
+      chapters:
+        - classification-problems.qmd
+        - clustering-problems.qmd
+        - regression-problems.qmd
+    - part: "贝叶斯建模"
+      chapters:
+        - probabilistic-reasoning-framework.qmd
+        - generalized-linear-models.qmd
+        - hierarchical-normal-models.qmd
+        - mixed-effects-models.qmd
+        - generalized-additive-models.qmd
+        - gaussian-processes-regression.qmd
+        - time-series-regression.qmd
+    - part: "空间分析"
+      chapters:
+        - analyze-point-pattern.qmd
+        - analyze-spatial-data.qmd
+        - analyze-areal-data.qmd
     - references.qmd
+  appendices:
+    - notations.qmd
+    - matrix-operations.qmd
   repo-branch: main
   search: true
   downloads: [pdf]
 
-bibliography: references.bib
+bibliography:
+  - references.bib
+  - packages.bib
 
 format:
   html:
     theme: cosmo
-    # code-fold: true
-    # code-tools: true
+    code-fold: true
+    code-tools: true
     crossref:
       chapters: true
   docx:
@@ -33,8 +57,24 @@ format:
   pdf:
     documentclass: book
     include-in-header: preamble.tex
-    classoption: [UTF8,twoside,openany,table]
+    include-before-body:
+      text: |
+        \ifdefined\appendixname
+          \renewcommand*\appendixname{附录}
+        \else
+          \newcommand\appendixname{附录}
+        \fi
+    include-after-body:
+      text: |
+        \printindex
+    classoption:
+      - UTF8
+      - twoside
+      - openany
+      - table
     keep-tex: true
+    latex-auto-install: false
+    mathspec: true
     lof: true
     lot: true
     geometry:

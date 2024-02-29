@@ -18,6 +18,7 @@ Imports:
     fastmatrix,
     fGarch (>= 4031.90),
     fmesher,
+    kernlab,
     FRK (>= 2.2.0),
     glmmTMB,
     glmnet,

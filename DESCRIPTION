@@ -10,7 +10,6 @@ Depends:
 Imports:
     abess,
     bayesplot,
-    BH,
     blme,
     brms,
     cmdstanr (>= 0.7.1),
@@ -51,7 +50,7 @@ Imports:
     reticulate,
     rjags,
     rootSolve,
-    rstan (>= 2.32.3),
+    rstan (>= 2.32.6),
     rpart.plot,
     sf (>= 1.0.9),
     showtext,
@@ -67,12 +66,10 @@ Imports:
     xgboost,
     xml2,
     xts,
-    VGAM,
-    zoo
+    VGAM
 Suggests:
-    quarto,
-    rsconnect
-LinkingTo: StanHeaders (>= 2.32.2), RcppParallel (>= 5.1.0)
+    rsconnect (>= 1.2.1)
+LinkingTo: StanHeaders (>= 2.32.6)
 SystemRequirements: pgf (>= 3.00), JAGS 4.x.y
 Additional_repositories:
     https://mc-stan.org/r-packages/,

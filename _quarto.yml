@@ -19,6 +19,7 @@ book:
     - part: "贝叶斯建模"
       chapters:
         - probabilistic-reasoning-framework.qmd
+        - linear-models.qmd
         - generalized-linear-models.qmd
         - hierarchical-normal-models.qmd
         - mixed-effects-models.qmd

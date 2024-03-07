@@ -9,10 +9,13 @@ Book in early development. Planned release in 202X.
 
 
 ```{r}
+#| message: false
+
 xfun::session_info(packages = c(
-  "mgcv", "glmnet", "lme4", "xgboost", "spaMM",
-  "sf", "stars", "terra", "INLA", "cmdstanr",
-  "knitr", "rmarkdown", "quarto", "rsconnect"
+  "mgcv", "glmnet", "lme4", "xgboost", "tensorflow",
+  "spaMM", "sf", "stars", "terra", "spdep", "spatstat",
+  "INLA", "cmdstanr", "brms", "ggplot2", "patchwork",
+  "knitr", "rmarkdown", "rsconnect", "magick", "pdftools"
 ), dependencies = FALSE)
 ```
 

@@ -28,6 +28,8 @@ jobs:
       PANDOC_VERSION: "3.1.11"
       QUARTO_VERSION: "1.4.551"
       R_VERSION: "4.3.3"
+      LANG: "en_US.UTF-8"
+      TZ: "Asia/Shanghai"
       RETICULATE_PYTHON_ENV: /opt/.virtualenvs/r-tensorflow
     steps:
       - uses: actions/checkout@v4

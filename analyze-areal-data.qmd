@@ -9,31 +9,27 @@
 ::: {#spatial-areal-data .callout-note title="空间区域数据分析"}
 空间区域数据的贝叶斯建模
 
--   Bayesian spatial and spatio-temporal GLMMs with possible extremes [glmmfields](https://github.com/seananderson/glmmfields)
--   Bayesian spatial analysis [geostan](https://github.com/ConnorDonegan/geostan/)
--   [Spatial Models in Stan: Intrinsic Auto-Regressive Models for Areal Data](https://mc-stan.org/users/documentation/case-studies/icar_stan.html)
 -   [Exact sparse CAR models in Stan](https://github.com/mbjoseph/CARstan) [网页文档](https://mc-stan.org/users/documentation/case-studies/mbjoseph-CARStan.html)
 -   [Spatial Models in Stan: Intrinsic Auto-Regressive Models for Areal Data](https://github.com/stan-dev/example-models/tree/master/knitr/car-iar-poisson) [网页文档](https://mc-stan.org/users/documentation/case-studies/icar_stan.html) 原始数据和代码，接上面苏格兰唇癌数据分析，用 CmdStanR 更新后的[代码](https://github.com/stan-dev/example-models/tree/master/knitr/car-iar-poisson)
 -   [Spatial modeling of areal data. Lip cancer in Scotland](https://www.paulamoraga.com/book-geospatial/sec-arealdataexamplespatial.html) INLA 建模
--   [CAR models Scotland Lip cancer dataset](https://rafaelcabral96.github.io/nigstan/sar-and-car-models.html#car-models) Stan 建模
--   空间计量 [区域数据分析](https://rsbivand.github.io/emos_talk_2304/bivand_emos_230419.pdf) [on-the-use-of-r-for-spatial-econometrics](https://github.com/rsbivand/emos_talk_2304)
 :::
-
-响应变量服从泊松分布
-
--   BYM-INLA [@blangiardo2013; @moraga2020]
--   BYM-Stan [@morris2019; @donegan2022; @cabral2022]
 
 记录 1975-1986 年苏格兰 56 个地区的唇癌病例数，这是一个按地区汇总的数据。
 
 ```{r}
+#| message: false
+
 library(sf)
 scotlips <- st_read('data/scotland/scotland.shp', crs = st_crs("EPSG:27700"))
-str(scotlips)
+scotlips
 ```
 
+-   Observed 观测到的患唇癌的案例数
+-   Expected 预期患唇癌的案例数
+-   pcaff: 从事农业、渔业和林业的人口比例（单位：百分比）。
+
 ```{r}
-#| label: fig-lip-cancer-map
+#| label: fig-scotlips-map
 #| fig-cap: 苏格兰各地区唇癌病例数分布
 #| fig-width: 5
 #| fig-height: 5
@@ -42,7 +38,123 @@ str(scotlips)
 library(ggplot2)
 ggplot() +
   geom_sf(data = scotlips, aes(fill = Observed)) +
-  scale_fill_viridis_c() +
+  scale_fill_viridis_c(option = "plasma", na.value = "white") +
+  theme_minimal()
+```
+
+### CAR 模型
+
+**brms** 包的函数 `car()` 构建 CAR 模型，详情见帮助文档 `?car`。
+
+| 缩写   | 全称                                  | 实现 |
+|--------|---------------------------------------|------|
+| car    | conditional auto-regressive           | \-   |
+| icar   | intrinsic CAR                         | brms |
+| iar    | intrinsic auto-regressive @morris2019 | \-   |
+| escar  | exact sparse CAR                      | brms |
+| esicar | exact sparse intrinsic CAR            | brms |
+| bym2   | Besag York Mollié 2 @morris2019       | brms |
+
+```{r}
+#| message: false
+
+# 构造邻接矩阵
+library(spdep)
+# 根据距离确定近邻关系
+scot_nb <- spdep::poly2nb(scotlips, row.names = scotlips$SP_ID)
+# 创建邻接矩阵 W
+W <- nb2mat(neighbours = scot_nb, style = "B", zero.policy = TRUE)
+
+library(brms)
+# 数据变换
+scotlips$pcaff2 <- 0.1 * scotlips$pcaff
+# 拟合模型
+scot_fit_icar <- brm(
+  Observed ~ offset(log(Expected)) + pcaff2 + car(W, gr = SP_ID, type = "icar"),
+  data = scotlips, data2 = list(W = W), family = poisson(link = "log"),
+  refresh = 0, seed = 20232023
+)
+# 输出结果
+summary(scot_fit_icar)
+```
+
+后验线性预测
+
+```{r}
+scotlips$RR <- colMeans(posterior_linpred(scot_fit_icar))
+# 相对风险的对数
+summary(scotlips$RR)
+```
+
+模型的 LOO 值
+
+```{r}
+loo(scot_fit_icar)
+```
+
+后验线性预测的拟合值
+
+```{r}
+#| label: fig-scotlips-pred-icar
+#| fig-cap: 苏格兰各地区唇癌病相对风险（对数尺度）
+#| fig-width: 5
+#| fig-height: 5
+#| fig-showtext: true
+
+ggplot() +
+  geom_sf(data = scotlips, aes(fill = RR)) +
+  scale_fill_viridis_c(option = "plasma", na.value = "white") +
+  theme_minimal()
+```
+
+### BYM2 模型
+
+响应变量服从泊松分布
+
+-   BYM-INLA [@blangiardo2013; @moraga2020]
+-   BYM-Stan [@morris2019; @donegan2022; @cabral2022]
+
+将 ICAR 模型更新为 BYM2 模型
+
+```{r}
+#| message: false
+
+# 拟合模型
+scot_fit_bym2 <- brm(
+  Observed ~ offset(log(Expected)) + pcaff2 + car(W, gr = SP_ID, type = "bym2"),
+  data = scotlips, data2 = list(W = W), family = poisson(link = "log"),
+  refresh = 0, seed = 20232023
+)
+# 输出结果
+summary(scot_fit_bym2)
+```
+
+`rhocar` 表示 CAR 先验中的参数 $\rho$
+
+`sdcar` 表示 CAR 先验中的参数 $\sigma$
+
+```{r}
+loo(scot_fit_bym2)
+```
+
+预测值
+
+```{r}
+scotlips$RR <- colMeans(posterior_linpred(scot_fit_bym2))
+# 相对风险的对数
+summary(scotlips$RR)
+```
+
+```{r}
+#| label: fig-scotlips-pred-bym2
+#| fig-cap: 苏格兰各地区唇癌病相对风险（对数尺度）
+#| fig-width: 5
+#| fig-height: 5
+#| fig-showtext: true
+
+ggplot() +
+  geom_sf(data = scotlips, aes(fill = RR)) +
+  scale_fill_viridis_c(option = "plasma", na.value = "white") +
   theme_minimal()
 ```
 
@@ -118,8 +230,7 @@ centers48 <- subset(
 )
 # 观测数据
 arrests48 <- subset(
-  x = USArrests,
-  subset = !rownames(USArrests) %in% c("Alaska", "Hawaii")
+  x = USArrests, subset = !rownames(USArrests) %in% c("Alaska", "Hawaii")
 )
 ```
 
@@ -128,7 +239,7 @@ arrests48 <- subset(
 
 library(spData)
 library(spdep)
-# KNN
+# KNN K-近邻方法获取邻接矩阵
 k4.48 <- knn2nb(knearneigh(as.matrix(centers48), k = 4))
 # Moran I test
 moran.test(x = arrests48$Assault, listw = nb2listw(k4.48))

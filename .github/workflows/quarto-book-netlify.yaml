@@ -9,6 +9,10 @@ on:
     # run every day at 11 PM
     - cron: '0 23 * * 3'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 name: Render and deploy Book to Netlify
 
 env:
@@ -22,6 +26,10 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       CMDSTAN_VERSION: "2.34.1"
       PANDOC_VERSION: "3.1.11"
+      QUARTO_VERSION: "1.4.551"
+      R_VERSION: "4.3.3"
+      LANG: "en_US.UTF-8"
+      TZ: "Asia/Shanghai"
       RETICULATE_PYTHON_ENV: /opt/.virtualenvs/r-tensorflow
     steps:
       - uses: actions/checkout@v4
@@ -29,12 +37,12 @@ jobs:
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
-          version: 1.4.550
+          version: ${{ env.QUARTO_VERSION }}
 
       - uses: r-lib/actions/setup-r@v2
         with:
           use-public-rspm: true
-          r-version: '4.3.2'
+          r-version: ${{ env.R_VERSION }}
           extra-repositories: 'https://mc-stan.org/r-packages https://inla.r-inla-download.org/R/stable'
 
       - uses: r-lib/actions/setup-r-dependencies@v2
@@ -106,7 +114,6 @@ jobs:
           RETICULATE_PYTHON_ENV: /opt/.virtualenvs/r-tensorflow
           RETICULATE_PYTHON: /opt/.virtualenvs/r-tensorflow/bin/python
           CMDSTAN: /opt/cmdstan/cmdstan-${{ env.CMDSTAN_VERSION }}
-
 
       - name: Deploy book to bookdown.org
         if: github.event_name == 'push'

@@ -156,9 +156,12 @@ ggplot() +
 
 ```{r}
 # spatial point pattern ppp 类型
-quakes_ppp <- spatstat.geom::as.ppp(quakes_sf)
+quakes_ppp <- spatstat.geom::as.ppp(st_geometry(quakes_sf))
 # 限制散点在给定的窗口边界内平滑
 spatstat.geom::Window(quakes_ppp) <- spatstat.geom::as.owin(quakes_sfp_hull)
+
+# quakes_ppp <- spatstat.geom::as.ppp(st_geometry(quakes_sf), W = spatstat.geom::as.owin(quakes_sfp_hull))
+
 # 密度估计
 density_spatstat <- spatstat.explore::density.ppp(quakes_ppp, dimyx = 256)
 # 转化为 stars 对象 栅格数据

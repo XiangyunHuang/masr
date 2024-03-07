@@ -1,18 +1,23 @@
-# 前言 {.unnumbered}
+# 前言 {#preface .unnumbered}
 
 ::: callout-warning
 Book in early development. Planned release in 202X. 
 :::
 
+本书分三大部分，分别是机器学习、贝叶斯建模和空间分析。三个部分分别依据任务类型、模型种类和数据类型展开，不同的写作出发点将呈现不一样的写作风格。应用机器学习首先需要确定任务类型，根据不同的任务选用不同的算法。贝叶斯建模从简单到复杂分频率和贝叶斯方法介绍主流的统计模型。应用空间分析方法需要根据空间数据类型（生成机理）而定，不同的生成机理将对应不同的建模和分析方法。机器学习根据任务类型分聚类、分类、回归和排序四个章节。贝叶斯建模根据模型种类分概率推理框架、线性模型、广义线性模型、分层正态模型、混合效应模型、广义可加模型、高斯过程回归、时间序列回归等八个章节。空间分析部分根据空间数据类型分点模式数据分析、点参考数据分析和区域数据分析三个章节。
 
-## 环境信息 {#session}
+## 环境信息 {#session .unnumbered}
 
+本书采用科学和技术写作排版系统 [Quarto](https://quarto.org/) 编写，所有代码和文本混编在 qmd 格式的纯文本文件中，具有计算可重复性，即内含的 R 语言、Stan 语言和 Python 语言代码都可运行，并将计算结果插入到最终的文档中，本书使用的主要 R 包及版本信息如下：
 
 ```{r}
+#| message: false
+
 xfun::session_info(packages = c(
-  "mgcv", "glmnet", "lme4", "xgboost", "spaMM",
-  "sf", "stars", "terra", "INLA", "cmdstanr",
-  "knitr", "rmarkdown", "quarto", "rsconnect"
+  "mgcv", "glmnet", "lme4", "xgboost", "tensorflow",
+  "spaMM", "sf", "stars", "terra", "spdep", "spatstat",
+  "INLA", "cmdstanr", "brms", "ggplot2", "patchwork",
+  "knitr", "rmarkdown", "rsconnect", "magick", "pdftools"
 ), dependencies = FALSE)
 ```
 

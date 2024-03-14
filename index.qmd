@@ -14,9 +14,9 @@ Book in early development. Planned release in 202X.
 #| message: false
 
 xfun::session_info(packages = c(
-  "mgcv", "glmnet", "lme4", "xgboost", "tensorflow",
-  "spaMM", "sf", "stars", "terra", "spdep", "spatstat",
-  "INLA", "cmdstanr", "brms", "ggplot2", "patchwork",
+  "mgcv", "glmnet", "lme4", "xgboost", "keras", "tensorflow",
+  "spaMM", "sf", "stars", "terra", "spdep", "igraph", "spatstat",
+  "INLA", "cmdstanr", "rstan", "brms", "ggplot2", "patchwork",
   "knitr", "rmarkdown", "rsconnect", "magick", "pdftools"
 ), dependencies = FALSE)
 ```

@@ -1,4 +1,4 @@
-# 数学符号 {#sec-math-notations}
+# 符号约定 {#sec-math-notations}
 
 ::: hidden
 $$
@@ -50,30 +50,36 @@ $$
 
 下表给出本书用到的一些统计术语的英文缩写。
 
-| 统计术语             | 英文缩写 |
-|----------------------|----------|
-| 最小二乘估计         | LSE      |
-| 极大似然估计         | MLE      |
-| 最佳线性无偏估计     | BLUE     |
-| 最小方差无偏估计     | MVUE     |
-| 一致最小方差无偏估计 | UMVUE    |
-| 最小范数二次无偏估计 | MINQUE   |
-| 普通最小二乘估计     | OLS      |
-| 偏最小二乘估计       | PLS      |
-| 广义最小二乘估计     | GLS      |
-| 带权最小二乘估计     | WLS      |
-| Lasso 估计           | LASSO    |
-| 均方误差             | MSE      |
-| 均方根误差           | RMSE     |
-| 平均绝对误差         | MAE      |
-| 惩罚拟似然           | PQL      |
-| 剖面极大似然         | PML      |
-| 限制极大似然         | REML     |
-| 线性模型             | LM       |
-| 广义线性模型         | GLM      |
-| 广义可加模型         | GAM      |
-| 线性混合效应模型     | LMM      |
-| 广义线性混合效应模型 | GLMM     |
-| 广义可加混合效应模型 | GAMM     |
+| 统计术语                | 英文                                            | 英文缩写 |
+|------------------------|------------------------|------------------------|
+| 最小二乘估计            | Least Squares Estimator                         | LSE      |
+| 极大似然估计            | Maximum Likelihood Estimation                   | MLE      |
+| 最佳线性无偏估计        | Best Linear Unbaised Estimator                  | BLUE     |
+| 最小方差无偏估计        | Minimum-Variance Unbiased Estimator             | MVUE     |
+| 一致最小方差无偏估计    | Uniformly Minimum-Variance Unbiased Estimator   | UMVUE    |
+| 最小范数二次无偏估计    | Minimum Norm Quadratic Unbiased Estimator       | MINQUE   |
+| 普通最小二乘估计        | Ordinary Least Squares Estimator                | OLS      |
+| 偏最小二乘估计          | Partial Least Squares Estimator                 | PLS      |
+| 广义最小二乘估计        | Generalized Least Squares Estimator             | GLS      |
+| 带权最小二乘估计        | Weighted Least Squares Estimator                | WLS      |
+| 迭代再加权最小二乘      | Iteratively Reweighted Least Squares            | IRLS     |
+| 最小绝对收缩和选择算子  | Least Absolute Shrinkage and Selection Operator | LASSO    |
+| 均方误差                | Mean Squared Error                              | MSE      |
+| 均方根误差              | Root Mean Squared Error                         | RMSE     |
+| 平均绝对误差            | Mean Absolute Error                             | MAE      |
+| 最小绝对误差            | Least Absolute Error                            | LAE      |
+| 惩罚拟似然              | Penalized Quasi-Likelihood                      | PQL      |
+| 剖面极大似然            | Profile Maximum Likelihood                      | PML      |
+| 限制极大似然            | REstricted Maximum Likelihood                   | REML     |
+| 广义估计方程            | Generalized Estimating Equation                 | GEE      |
+| 线性模型                | Linear Models                                   | LM       |
+| 广义线性模型            | Generalized Linear Models                       | GLM      |
+| 广义可加模型            | Generalized Additive Models                     | GAM      |
+| 线性混合效应模型        | Linear Mixed-Effects Models                     | LMM      |
+| 非线性混合效应模型      | Nonlinear Mixed-Effects Models                  | NLME     |
+| 广义线性混合效应模型    | Generalized Linear Mixed-Effects Models         | GLMM     |
+| 广义可加混合效应模型    | Generalized Additive Mixed-Effects Models       | GAMM     |
+| 集成嵌套拉普拉斯        | Integrated Nested Laplace approximation         | INLA     |
+| 马尔可夫链蒙特卡洛      | Markov Chain Monte Carlo                        | MCMC     |
 
 : 统计术语的英文缩写 {#tbl-stats-acronym}

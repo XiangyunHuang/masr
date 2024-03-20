@@ -13,7 +13,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
-name: Render and deploy Book to Netlify
+name: Render and deploy Book
 
 env:
   isExtPR: ${{ github.event.pull_request.head.repo.fork == true }}
@@ -116,15 +116,13 @@ jobs:
           CMDSTAN: /opt/cmdstan/cmdstan-${{ env.CMDSTAN_VERSION }}
 
       - name: Deploy book to bookdown.org
-        if: contains(env.isExtPR, 'false')
         env:
           CONNECT_API_KEY: ${{ secrets.RSC_BOOKDOWN_TOKEN }}
           CONTENT_ID: ${{ secrets.RSC_BOOKDOWN_APP_ID }}
         run: |
           Rscript '_deploy.R'
 
-      - name: Deploy to Netlify
-        if: contains(env.isExtPR, 'false')
+      - name: Deploy book to Netlify
         id: netlify-deploy
         uses: nwtgck/actions-netlify@v2
         with:

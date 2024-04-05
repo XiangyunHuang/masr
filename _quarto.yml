@@ -7,7 +7,12 @@ book:
   title: "现代应用统计"
   output-file: "masr"
   author: "黄湘云"
-  date: "2022-04-05"
+  date: today
+  date-format: long
+  google-analytics: "G-F3W2V2KC21"
+  repo-actions:
+    - source
+  repo-url: "https://github.com/XiangyunHuang/masr"
   chapters:
     - index.qmd
     - intro.qmd

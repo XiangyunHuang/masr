@@ -475,7 +475,9 @@ plot(AirPassengers)
 lines(air_passengers_ts, col = "red")
 ```
 
-### tensorflow 框架 {#sec-google-tensorflow}
+
+
+### nnet 包 {#sec-gnu-nnet}
 
 前面介绍的模型都具有非常强的可解释性，比如各个参数对模型的作用。对于复杂的时间序列数据，比较适合用复杂的模型来拟合，看重模型的泛化能力，而不那么关注模型的机理。
 
@@ -530,7 +532,11 @@ lines(test_pred_ts, col = "green")
 
 由图可知，在测试集上，随着时间拉长，预测越来越不准。
 
-下面使用 tensorflow 包构造**多层**感知机训练数据和预测。
+### keras3 包 {#sec-google-keras3}
+
+[**keras3**](https://github.com/rstudio/keras) 包通过 **reticulate** 包引入 [Keras 3](https://github.com/keras-team/keras) 框架，这个框架支持 [TensorFlow](https://github.com/tensorflow/tensorflow) 和 [PyTorch](https://github.com/pytorch/pytorch) 等多个后端，目前，keras3 包通过 [tensorflow 包](https://github.com/rstudio/tensorflow)仅支持 TensorFlow 后端。
+
+下面使用 keras3 包构造多层感知机训练数据和预测。
 
 ```{r}
 #| message: false

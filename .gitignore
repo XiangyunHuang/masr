@@ -6,12 +6,14 @@ masr.tex
 /.quarto/
 .DS_Store
 _book/
+_book2/
 old/
 rsconnect/
 
 *.log
 *-tikzDictionary
 *.aux
+*_files/
 
 code/poisson_log_glm
 code/bernoulli_logit_glm_normal

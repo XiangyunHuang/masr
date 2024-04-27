@@ -1,4 +1,4 @@
-# 线性模型 {#sec-linear-models}
+# 简单线性模型 {#sec-linear-models}
 
 ```{r}
 #| label: setup-cmdstan

@@ -25,9 +25,9 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       CMDSTAN_VERSION: "2.34.1"
-      PANDOC_VERSION: "3.1.11"
-      QUARTO_VERSION: "1.4.551"
-      R_VERSION: "4.3.3"
+      PANDOC_VERSION: "3.1.13"
+      QUARTO_VERSION: "1.4.553"
+      R_VERSION: "4.4.0"
       LANG: "en_US.UTF-8"
       TZ: "Asia/Shanghai"
       RETICULATE_PYTHON_ENV: /opt/.virtualenvs/r-tensorflow
@@ -124,7 +124,7 @@ jobs:
 
       - name: Deploy book to Netlify
         id: netlify-deploy
-        uses: nwtgck/actions-netlify@v2
+        uses: nwtgck/actions-netlify@v3.0
         with:
           publish-dir: './_book'
           production-branch: main

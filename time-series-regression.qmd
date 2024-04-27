@@ -535,12 +535,11 @@ lines(test_pred_ts, col = "green")
 ```{r}
 #| message: false
 
-library(tensorflow)
-library(keras)
+library(keras3)
 set_random_seed(20222022)
 # 模型结构
-mod_mlp <- keras_model_sequential() |> 
-  layer_dense(units = 12, activation = "relu", input_shape = c(3)) |> 
+mod_mlp <- keras_model_sequential(shape = c(3)) |> 
+  layer_dense(units = 12, activation = "relu") |> 
   layer_dense(units = 8, activation = "relu") |> 
   layer_dense(units = 1)
 # 训练目标

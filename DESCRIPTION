@@ -31,7 +31,7 @@ Imports:
     hexbin,
     hglm,
     INLA (>= 23.9.9),
-    keras,
+    keras3 (>= 0.2.0),
     knitr,
     lars,
     lavaan,

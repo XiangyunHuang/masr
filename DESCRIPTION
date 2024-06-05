@@ -71,6 +71,7 @@ Imports:
 Suggests: 
     quarto (>= 1.4), 
     rsconnect (>= 1.2.1)
+Remotes: rspatial/geodata
 LinkingTo: BH (>= 1.75.0-0), StanHeaders (>= 2.32.6)
 SystemRequirements: pgf (>= 3.00), JAGS 4.x.y
 Additional_repositories:

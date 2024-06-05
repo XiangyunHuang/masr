@@ -12,7 +12,7 @@ Imports:
     bayesplot,
     blme,
     brms,
-    cmdstanr (>= 0.7.1),
+    cmdstanr (>= 0.8.0),
     downlit,
     expm,
     fastmatrix,
@@ -74,7 +74,7 @@ Suggests:
 LinkingTo: BH (>= 1.75.0-0), StanHeaders (>= 2.32.6)
 SystemRequirements: pgf (>= 3.00), JAGS 4.x.y
 Additional_repositories:
-    https://mc-stan.org/r-packages/,
+    https://stan-dev.r-universe.dev,
     https://inla.r-inla-download.org/R/stable
 Encoding: UTF-8
 License: CC NC ND 4.0

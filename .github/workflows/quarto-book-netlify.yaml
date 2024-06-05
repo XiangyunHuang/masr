@@ -24,9 +24,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      CMDSTAN_VERSION: "2.34.1"
+      CMDSTAN_VERSION: "2.35.0"
       PANDOC_VERSION: "3.1.13"
-      QUARTO_VERSION: "1.4.553"
+      QUARTO_VERSION: "1.4.555"
       R_VERSION: "4.4.0"
       LANG: "en_US.UTF-8"
       TZ: "Asia/Shanghai"
@@ -43,7 +43,7 @@ jobs:
         with:
           use-public-rspm: true
           r-version: ${{ env.R_VERSION }}
-          extra-repositories: 'https://mc-stan.org/r-packages https://inla.r-inla-download.org/R/stable'
+          extra-repositories: 'https://stan-dev.r-universe.dev https://inla.r-inla-download.org/R/stable'
 
       - uses: r-lib/actions/setup-r-dependencies@v2
 

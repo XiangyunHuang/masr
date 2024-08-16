@@ -25,7 +25,7 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       CMDSTAN_VERSION: "2.35.0"
-      PANDOC_VERSION: "3.2"
+      PANDOC_VERSION: "3.3"
       QUARTO_VERSION: "1.5.56"
       R_VERSION: "4.4.1"
       LANG: "en_US.UTF-8"
@@ -66,8 +66,6 @@ jobs:
           virtualenv -p /usr/bin/python3 $RETICULATE_PYTHON_ENV
           source $RETICULATE_PYTHON_ENV/bin/activate
           pip3 install -r requirements.txt
-          python -m spacy download en_core_web_sm
-          python -m spacy download zh_core_web_sm
           deactivate
 
       - name: Setup CmdStan

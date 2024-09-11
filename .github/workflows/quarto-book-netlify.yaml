@@ -25,8 +25,8 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       CMDSTAN_VERSION: "2.35.0"
-      PANDOC_VERSION: "3.3"
-      QUARTO_VERSION: "1.5.56"
+      PANDOC_VERSION: "3.4"
+      QUARTO_VERSION: "1.5.57"
       R_VERSION: "4.4.1"
       LANG: "en_US.UTF-8"
       TZ: "Asia/Shanghai"

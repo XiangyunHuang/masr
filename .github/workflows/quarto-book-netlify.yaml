@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   schedule:
     # run every day at 11 PM
-    - cron: '0 23 * * 3'
+    - cron: '0 23 * * 1'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -25,11 +25,12 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       CMDSTAN_VERSION: "2.35.0"
-      PANDOC_VERSION: "3.1.13"
-      QUARTO_VERSION: "1.4.555"
-      R_VERSION: "4.4.0"
+      PANDOC_VERSION: "3.4"
+      QUARTO_VERSION: "1.5.57"
+      R_VERSION: "4.4.1"
       LANG: "en_US.UTF-8"
       TZ: "Asia/Shanghai"
+      RETICULATE_PYTHON: /opt/.virtualenvs/r-tensorflow/bin/python
       RETICULATE_PYTHON_ENV: /opt/.virtualenvs/r-tensorflow
     steps:
       - uses: actions/checkout@v4
@@ -65,8 +66,6 @@ jobs:
           virtualenv -p /usr/bin/python3 $RETICULATE_PYTHON_ENV
           source $RETICULATE_PYTHON_ENV/bin/activate
           pip3 install -r requirements.txt
-          python -m spacy download en_core_web_sm
-          python -m spacy download zh_core_web_sm
           deactivate
 
       - name: Setup CmdStan
@@ -111,8 +110,8 @@ jobs:
           quarto render --to html
         shell: bash
         env:
-          RETICULATE_PYTHON_ENV: /opt/.virtualenvs/r-tensorflow
-          RETICULATE_PYTHON: /opt/.virtualenvs/r-tensorflow/bin/python
+          RETICULATE_PYTHON_ENV: ${{ env.RETICULATE_PYTHON_ENV }}
+          RETICULATE_PYTHON: ${{ env.RETICULATE_PYTHON }}
           CMDSTAN: /opt/cmdstan/cmdstan-${{ env.CMDSTAN_VERSION }}
 
       - name: Deploy book to bookdown.org

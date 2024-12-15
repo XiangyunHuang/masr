@@ -24,10 +24,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      CMDSTAN_VERSION: "2.35.0"
+      CMDSTAN_VERSION: "2.36.0"
       PANDOC_VERSION: "3.4"
-      QUARTO_VERSION: "1.5.57"
-      R_VERSION: "4.4.1"
+      QUARTO_VERSION: "1.6.39"
+      R_VERSION: "4.4.2"
       LANG: "en_US.UTF-8"
       TZ: "Asia/Shanghai"
       RETICULATE_PYTHON: /opt/.virtualenvs/r-tensorflow/bin/python
@@ -114,12 +114,12 @@ jobs:
           RETICULATE_PYTHON: ${{ env.RETICULATE_PYTHON }}
           CMDSTAN: /opt/cmdstan/cmdstan-${{ env.CMDSTAN_VERSION }}
 
-      - name: Deploy book to bookdown.org
-        env:
-          CONNECT_API_KEY: ${{ secrets.RSC_BOOKDOWN_TOKEN }}
-          CONTENT_ID: ${{ secrets.RSC_BOOKDOWN_APP_ID }}
-        run: |
-          Rscript '_deploy.R'
+      # - name: Deploy book to bookdown.org
+      #   env:
+      #     CONNECT_API_KEY: ${{ secrets.RSC_BOOKDOWN_TOKEN }}
+      #     CONTENT_ID: ${{ secrets.RSC_BOOKDOWN_APP_ID }}
+      #   run: |
+      #     Rscript '_deploy.R'
 
       - name: Deploy book to Netlify
         id: netlify-deploy

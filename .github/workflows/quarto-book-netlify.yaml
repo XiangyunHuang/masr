@@ -114,12 +114,12 @@ jobs:
           RETICULATE_PYTHON: ${{ env.RETICULATE_PYTHON }}
           CMDSTAN: /opt/cmdstan/cmdstan-${{ env.CMDSTAN_VERSION }}
 
-      - name: Deploy book to bookdown.org
-        env:
-          CONNECT_API_KEY: ${{ secrets.RSC_BOOKDOWN_TOKEN }}
-          CONTENT_ID: ${{ secrets.RSC_BOOKDOWN_APP_ID }}
-        run: |
-          Rscript '_deploy.R'
+      # - name: Deploy book to bookdown.org
+      #   env:
+      #     CONNECT_API_KEY: ${{ secrets.RSC_BOOKDOWN_TOKEN }}
+      #     CONTENT_ID: ${{ secrets.RSC_BOOKDOWN_APP_ID }}
+      #   run: |
+      #     Rscript '_deploy.R'
 
       - name: Deploy book to Netlify
         id: netlify-deploy

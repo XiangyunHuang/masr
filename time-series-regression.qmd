@@ -248,7 +248,7 @@ $$
 #| par: true
 
 air_passengers_df <- data.frame(y = as.vector(AirPassengers), t = 1:144)
-fit_lm1 <- lm(y ~ t + sin(t / 12 * 2 * pi) + cos(t / 12 * 2 * pi), data = air_passengers_df)
+fit_lm1 <- lm(log(y) ~ t + sin(t / 12 * 2 * pi) + cos(t / 12 * 2 * pi), data = air_passengers_df)
 fit_lm2 <- update(fit_lm1, . ~ . +
   sin(t / 12 * 2 * 2 * pi) + cos(t / 12 * 2 * 2 * pi), data = air_passengers_df
 )
@@ -256,9 +256,9 @@ fit_lm3 <- update(fit_lm2, . ~ . +
   sin(t / 12 * 3 * 2 * pi) + cos(t / 12 * 3 * 2 * pi), data = air_passengers_df
 )
 plot(y ~ t, air_passengers_df, type = "l")
-lines(x = air_passengers_df$t, y = fit_lm1$fitted.values, col = "red")
-lines(x = air_passengers_df$t, y = fit_lm2$fitted.values, col = "green")
-lines(x = air_passengers_df$t, y = fit_lm3$fitted.values, col = "orange")
+lines(x = air_passengers_df$t, y = exp(fit_lm1$fitted.values), col = "red")
+lines(x = air_passengers_df$t, y = exp(fit_lm2$fitted.values), col = "green")
+lines(x = air_passengers_df$t, y = exp(fit_lm3$fitted.values), col = "orange")
 ```
 
 模型 1 已经很好地捕捉到趋势和周期信息，当添加小周期后，略有改善，继续添加更多的小周期，不再有明显改善。实际上，小周期对应的回归系数也将不再显著。所以，这类模型的优化空间见顶了，需要进一步观察和利用残差的规律，使用更加复杂的模型。
@@ -266,10 +266,6 @@ lines(x = air_passengers_df$t, y = fit_lm3$fitted.values, col = "orange")
 ### Stan 框架
 
 非线性趋势、多季节性（多个周期混合）、特殊节假日、突发热点事件、残差成分（平稳），能同时应对这五种情况的建模方法是贝叶斯可加模型和神经网络模型，比如基于 Stan 实现的 prophet 包和 tensorflow 框架。
-
-::: callout-tip
-prophet 包是如何同时处理这些情况，是否可以在 cmdstanr 包中实现，是否可以在 mgcv 和 INLA 中实现？
-:::
 
 ```{r}
 library(cmdstanr)
@@ -390,7 +386,7 @@ air_passengers_tbl <- data.frame(
   year = rep(1949:1960, each = 12),
   month = rep(1:12, times = 12)
 )
-mod1 <- gam(y ~ s(year) + s(month, bs = "cr", k = 12),
+mod1 <- gam(log(y) ~ s(year) + s(month, bs = "cr"),
   data = air_passengers_tbl, family = gaussian
 )
 summary(mod1)
@@ -420,7 +416,7 @@ plot(mod1, shade = TRUE)
 #| fig-height: 4
 #| par: true
 
-air_passengers_ts <- ts(mod1$fitted.values, start = c(1949, 1), frequency = 12)
+air_passengers_ts <- ts(exp(mod1$fitted.values), start = c(1949, 1), frequency = 12)
 plot(AirPassengers)
 lines(air_passengers_ts, col = "red")
 ```
@@ -428,7 +424,7 @@ lines(air_passengers_ts, col = "red")
 整体上，乘客数逐年呈线性增长，每年不同月份呈现波动，淡季和旺季出行的流量有很大差异，近年来，这种差异的波动在扩大。为了刻画这种情况，考虑年度趋势和月度波动的交互作用。
 
 ```{r}
-mod2 <- gam(y ~ s(year, month), data = air_passengers_tbl, family = gaussian)
+mod2 <- gam(log(y) ~ s(year, month), data = air_passengers_tbl, family = gaussian)
 summary(mod2)
 ```
 
@@ -470,7 +466,7 @@ on.exit(par(op), add = TRUE)
 #| fig-height: 4
 #| par: true
 
-air_passengers_ts <- ts(mod2$fitted.values, start = c(1949, 1), frequency = 12)
+air_passengers_ts <- ts(exp(mod2$fitted.values), start = c(1949, 1), frequency = 12)
 plot(AirPassengers)
 lines(air_passengers_ts, col = "red")
 ```

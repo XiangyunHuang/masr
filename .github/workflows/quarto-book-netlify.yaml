@@ -27,7 +27,7 @@ jobs:
       CMDSTAN_VERSION: "2.36.0"
       PANDOC_VERSION: "3.6.3"
       QUARTO_VERSION: "1.6.42"
-      R_VERSION: "4.4.3"
+      R_VERSION: "4.5.0"
       LANG: "en_US.UTF-8"
       TZ: "Asia/Shanghai"
       RETICULATE_PYTHON: /opt/.virtualenvs/r-tensorflow/bin/python
@@ -44,7 +44,7 @@ jobs:
         with:
           use-public-rspm: true
           r-version: ${{ env.R_VERSION }}
-          extra-repositories: 'https://stan-dev.r-universe.dev https://inla.r-inla-download.org/R/stable'
+          extra-repositories: 'https://stan-dev.r-universe.dev https://dmlc.r-universe.dev https://inla.r-inla-download.org/R/stable'
 
       - uses: r-lib/actions/setup-r-dependencies@v2
 

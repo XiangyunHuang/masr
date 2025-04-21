@@ -64,7 +64,7 @@ Imports:
     tensorflow,
     tidycensus,
     tikzDevice,
-    xgboost,
+    xgboost (>= 3.0.0),
     xml2,
     xts,
     VGAM
@@ -75,6 +75,7 @@ LinkingTo: BH (>= 1.75.0-0), StanHeaders (>= 2.32.6)
 SystemRequirements: pgf (>= 3.00), JAGS 4.x.y
 Additional_repositories:
     https://stan-dev.r-universe.dev,
+    https://dmlc.r-universe.dev,
     https://inla.r-inla-download.org/R/stable
 Encoding: UTF-8
 License: CC NC ND 4.0

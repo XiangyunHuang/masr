@@ -487,7 +487,7 @@ data_size <- nrow(air_passengers)
 # 拆分数据集
 train_size <- floor(data_size * 0.67)
 train_data <- air_passengers[1:train_size, ]
-test_data <- air_passengers[train_size:data_size, ]
+test_data <- air_passengers[-(1:train_size), ]
 
 # 随机数种子对结果的影响非常大 试试 set.seed(20232023) 
 set.seed(20222022) 

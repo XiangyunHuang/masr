@@ -671,8 +671,8 @@ Boston_test <- list(
 ```{r}
 library(xgboost)
 Boston_xgb <- xgboost(
-  data = Boston_train$data, 
-  label = Boston_train$label,
+  x = Boston_train$data, 
+  y = Boston_train$label,
   objective = "reg:squarederror",  # 学习任务
   eval_metric = "rmse",    # 评估指标
   nrounds = 6

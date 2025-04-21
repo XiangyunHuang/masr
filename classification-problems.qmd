@@ -414,13 +414,33 @@ iris_test <- list(
 
 ```{r}
 library(xgboost)
-iris_xgb <- xgboost(
-  data = iris_train$data, 
-  label = iris_train$label,
-  objective = "multi:softmax",  # 学习任务
-  eval_metric = "mlogloss",     # 评估指标
-  nrounds = 2,   # 提升迭代的最大次数
-  num_class = 3  # 分类数
+nthread <- 1
+data.table::setDTthreads(nthread)
+# 整理数据
+dtrain <- with(
+  iris_train, xgb.DMatrix(data, label = label, nthread = nthread)
+)
+dtest <- with(
+  iris_test, xgb.DMatrix(data, label = label, nthread = nthread)
+)
+# 训练集和测试集
+evals <- list(train = dtrain, eval = dtest)
+# 参数设置
+param <- xgb.params(
+  max_depth = 2,
+  learning_rate = 1,
+  nthread = nthread,
+  objective = "multi:softmax",
+  eval_metric = "mlogloss",
+  num_class = 3
+)
+# 训练数据
+iris_xgb <- xgb.train(
+  params = param,
+  data = dtrain,
+  nrounds = 2,
+  evals = evals, 
+  verbose = 0
 )
 ```
 

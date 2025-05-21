@@ -64,7 +64,6 @@ Imports:
     tensorflow,
     tidycensus,
     tikzDevice,
-    xgboost (>= 3.0.0),
     xml2,
     xts,
     VGAM

@@ -94,6 +94,7 @@ jobs:
 
       - name: Reinstall R packages from source
         run: |
+          install.packages("xgboost", repos = c("https://dmlc.r-universe.dev", "https://cloud.r-project.org"))
           install.packages(c("Matrix", "MatrixModels", "rjags", "lme4", "TMB", "glmmTMB"), repos = "https://cran.r-project.org/", type = "source")
         shell: Rscript {0}
 

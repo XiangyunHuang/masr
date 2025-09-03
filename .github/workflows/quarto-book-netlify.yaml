@@ -24,10 +24,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      CMDSTAN_VERSION: "2.36.0"
+      CMDSTAN_VERSION: "2.37.0"
       PANDOC_VERSION: "3.6.3"
-      QUARTO_VERSION: "1.6.42"
-      R_VERSION: "4.5.0"
+      QUARTO_VERSION: "1.7.34"
+      R_VERSION: "4.5.1"
       LANG: "en_US.UTF-8"
       TZ: "Asia/Shanghai"
       RETICULATE_PYTHON: /opt/.virtualenvs/r-tensorflow/bin/python

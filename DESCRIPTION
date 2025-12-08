@@ -26,7 +26,7 @@ Imports:
     geodata (>= 0.6-2),
     ggeffects,
     ggfortify,
-    ggplot2 (>= 3.5.0),
+    ggplot2 (>= 4.0.0),
     ggrepel,
     hexbin,
     hglm,
@@ -64,6 +64,7 @@ Imports:
     tensorflow,
     tidycensus,
     tikzDevice,
+    xgboost (>= 3.1.2),
     xml2,
     xts,
     VGAM

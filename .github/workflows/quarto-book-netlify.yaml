@@ -26,8 +26,8 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       CMDSTAN_VERSION: "2.37.0"
       PANDOC_VERSION: "3.6.3"
-      QUARTO_VERSION: "1.7.34"
-      R_VERSION: "4.5.1"
+      QUARTO_VERSION: "1.8.26"
+      R_VERSION: "4.5.2"
       LANG: "en_US.UTF-8"
       TZ: "Asia/Shanghai"
       RETICULATE_PYTHON: /opt/.virtualenvs/r-tensorflow/bin/python
@@ -94,7 +94,6 @@ jobs:
 
       - name: Reinstall R packages from source
         run: |
-          install.packages("xgboost", repos = c("https://dmlc.r-universe.dev", "https://cloud.r-project.org"))
           install.packages(c("Matrix", "MatrixModels", "rjags", "lme4", "TMB", "glmmTMB"), repos = "https://cran.r-project.org/", type = "source")
         shell: Rscript {0}
 

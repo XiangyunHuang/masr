@@ -512,7 +512,7 @@ $$
 y_{ij} = \beta_0 + \beta_1 * x_j + \alpha_i + \epsilon_{ij}, \quad i = 1,2,\ldots,30. \quad j = 1,2,3,4,5
 $$
 
-其中，$y_{ij}$ 表示第 $i$ 只小鼠在第 $j$ 次测量的重量，一共 30 只小鼠，共测量了 5 次。固定效应部分是 $\beta_0$ 和 $\beta_1$ ，分别表示截距和斜率。随机效应部分是 $\alpha_i$ 和 $\epsilon_{ij}$ ，分别服从正态分布$\alpha_i \sim \mathcal{N}(0, \sigma^2_{\alpha})$ 和 $\epsilon_{ij} \sim \mathcal{N}(0, \sigma^2_{\epsilon})$ 。$\sigma^2_{\alpha}$ 和 $\sigma^2_{\epsilon}$ 分别表示组间方差（group level）和组内方差（individual level）。
+其中，$y_{ij}$ 表示第 $i$ 只小鼠在第 $j$ 次测量的重量，一共 30 只小鼠，共测量了 5 次。固定效应部分是 $\beta_0$ 和 $\beta_1$ ，分别表示截距和斜率。随机效应部分是 $\alpha_i$ 和 $\epsilon_{ij}$ ，分别服从正态分布$\alpha_i \sim \mathcal{N}(0, \sigma^2_{\alpha})$ 和 $\epsilon_{ij} \sim \mathcal{N}(0, \sigma^2_{\epsilon})$ 。$\sigma^2_{\alpha}$ 和 $\sigma^2_{\epsilon}$ 分别表示组间方差（group level）和组内方差（individual level）。下面加载 **nlme** 包调用函数 `lme()` 拟合该模型。
 
 ```{r}
 library(nlme)
@@ -520,12 +520,11 @@ rats_lme0 <- lme(data = rats_data, fixed = weight ~ days, random = ~ 1 | rats)
 summary(rats_lme0)
 ```
 
-当然，若考虑不同小鼠的生长速度不同（变化不是很大），可用变截距和变斜率的随机效应模型表示生长曲线模型，下面加载 **nlme** 包调用函数 `lme()` 拟合该模型。
+当然，若考虑不同小鼠的生长速度不同（变化不是很大），可用变截距和变斜率的随机效应模型表示生长曲线模型，如下。
 
 ```{r}
-library(nlme)
-rats_lme <- lme(data = rats_data, fixed = weight ~ days, random = ~ days | rats)
-summary(rats_lme)
+rats_lme1 <- lme(data = rats_data, fixed = weight ~ days, random = ~ days | rats)
+summary(rats_lme1)
 ```
 
 模型输出结果中，固定效应中的截距项 `(Intercept)` 对应 106.56762，斜率 `days` 对应 6.18571。Stan 模型中截距参数 `alpha0` 的后验估计是 106.332，斜率参数 `beta_c` 的后验估计是 6.188。对比 Stan 和 **nlme** 包的拟合结果，可以发现贝叶斯和频率方法的结果是非常接近的。截距参数 `alpha0` 可以看作小鼠的初始（出生）重量，斜率参数 `beta_c` 可以看作小鼠的生长率 growth rate。
@@ -534,7 +533,7 @@ summary(rats_lme)
 
 ```{r}
 # 参数的置信区间
-intervals(rats_lme, level = 0.95)
+intervals(rats_lme1, level = 0.95)
 ```
 
 Stan 输出中，截距项 alpha、斜率项 beta 参数的标准差分别是 `tau_alpha` 和 `tau_beta` ，残差标准差参数 `tau_c` 的估计为 6.1。简单起见，没有考虑截距项和斜率项的相关性，即不考虑小鼠出生时的重量和生长率的相关性，一般来说，应该是有关系的。函数 `lme()` 的输出结果中给出了截距项和斜率项的相关性为 -0.343，随机截距和随机斜率的相关性为 -0.159。
@@ -593,14 +592,8 @@ summary(rats_growth_fit, fit.measures = TRUE)
 输出结果显示 **lavaan** 包的函数 `growth()` 采用极大似然估计方法。协方差部分 `Covariances:` 随机效应中斜率和截距的协方差。截距部分 `Intercepts:` 对应于混合效应模型的固定效应部分。方差部分 `Variances:` 对应于混合效应模型的随机效应部分，包括残差方差、斜率和截距的方差。不难看出，这和前面 **nlme** 包的输出结果差别很大。原因是 **lavaan** 包将测量的次序从 0 开始计，0 代表小鼠出生后的第 8 天。也就是说，**lavaan** 采用的是次序标记，而不是实际数据。将测量发生的时间（第几天）换算成次序（第几次），并从 0 开始计，则函数 `lme()` 的输出和函数 `growth()` 就一致了。
 
 ```{r}
-# 重新组织数据
-rats_data2 <- data.frame(
-  weight = as.vector(y), 
-  rats = rep(1:30, times = 5), 
-  days = rep(c(0, 1, 2, 3, 4), each = 30)
-)
 # ML 方法估计模型参数
-rats_lme2 <- lme(data = rats_data2, fixed = weight ~ days, random = ~ days | rats, method = "ML")
+rats_lme2 <- lme(data = rats_data, fixed = weight ~ days, random = ~ days | rats, method = "ML")
 summary(rats_lme2)
 ```
 
@@ -632,7 +625,7 @@ summary(rats_glmmtmb)
 
 ### MASS
 
-**MASS** 包的结果与前面完全一致。
+
 
 ```{r}
 rats_mass <- MASS::glmmPQL(
@@ -641,6 +634,8 @@ rats_mass <- MASS::glmmPQL(
 )
 summary(rats_mass)
 ```
+
+**MASS** 包的结果与前面完全一致。
 
 ### spaMM
 
@@ -685,7 +680,7 @@ summary(rats_hglm)
 
 ### mgcv
 
-先考虑一个变截距的混合效应模型
+先考虑一个变截距的混合效应模型。
 
 $$
 y_{ij} = \beta_0 + \beta_1 * x_j + \alpha_i + \epsilon_{ij}, \quad i = 1,2,\ldots,30. \quad j = 1,2,3,4,5
